@@ -14,13 +14,28 @@
 UENUM(BlueprintType)
 enum class ScenarioEnum : uint8
 {
-	Null                UMETA(DisplayName = "Null"),
-	Jordan_FirstContact UMETA(DisplayName = "Jordan - First Contact"),
-	Jordan_FollowUp     UMETA(DisplayName = "Jordan - Follow Up"),
-	Jordan_CoffeeInvite UMETA(DisplayName = "Jordan - Coffee Invite"),
-	Jordan_FamilyCall   UMETA(DisplayName = "Jordan - Family Call"),
-	Jordan_Disclosure   UMETA(DisplayName = "Jordan - Disclosure"),
-	Jordan_LastWalk     UMETA(DisplayName = "Jordan - Last Walk"),
+	Null                	UMETA(DisplayName = "Null"),
+	Jordan_FirstContact 	UMETA(DisplayName = "Jordan - First Contact"),
+	Jordan_FollowUp     	UMETA(DisplayName = "Jordan - Follow Up"),
+	Jordan_CoffeeInvite 	UMETA(DisplayName = "Jordan - Coffee Invite"),
+	Jordan_FamilyCall   	UMETA(DisplayName = "Jordan - Family Call"),
+	Jordan_Disclosure   	UMETA(DisplayName = "Jordan - Disclosure"),
+	Jordan_LastWalk     	UMETA(DisplayName = "Jordan - Last Walk"),
+	Jade_BumpIn				UMETA(DisplayName = "Jade - Bump-In"),
+	Jade_Apology			UMETA(DisplayName = "Jade - Apology"),
+	Jade_SampleShuffle		UMETA(DisplayName = "Jade - Sample Shuffle"),
+	Jade_PersonalQuestion	UMETA(DisplayName = "Jade - Personal Question"),
+	Jade_HastyConfession	UMETA(DisplayName = "Jade - Hasty Confession"),
+	Jade_Overwhelm			UMETA(DisplayName = "Jade - Overwhelm"),
+	Jade_CheckIn			UMETA(DisplayName = "Jade - Check-In"),
+	Liam_AfterPractice		UMETA(DisplayName = "Liam - After Practice"),
+	Liam_Hallway			UMETA(DisplayName = "Liam - Hallway"),
+	Liam_StudyGroup			UMETA(DisplayName = "Liam - Study Group Drop-In"),
+	Liam_FriendPressure		UMETA(DisplayName = "Liam - Friend Pressure"),
+	Liam_BoilOver			UMETA(DisplayName = "Liam - Boil Over"),
+	Liam_WheresLiam			UMETA(DisplayName = "Liam - Wheres Liam"),
+	Liam_Accountability		UMETA(DisplayName = "Liam - Accountability"),
+	Liam_ChoosingCrew		UMETA(DisplayName = "Liam - Choosing Your Crew"),
 };
 
 UENUM(BlueprintType)
@@ -152,6 +167,26 @@ public:
 	UTexture2D* CharacterTexture;
 };
 
+USTRUCT(BlueprintType)
+struct DIALOGUETEST_API FSaveStruct
+{
+	GENERATED_BODY()
+public:
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	int32 CharacterId;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	int32 Affection;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	int32 ScenarioId;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	int32 DialogueId;
+	
+};
+
 UCLASS()
 class DIALOGUETEST_API UDialogueTools : public UBlueprintFunctionLibrary
 {
@@ -159,6 +194,6 @@ class DIALOGUETEST_API UDialogueTools : public UBlueprintFunctionLibrary
 
 public:
 	UFUNCTION(BlueprintCallable)
-	static TArray<FScenarioStruct> BuildDialogueTree(TArray<FDialogueNode> DialogueArray);
+	static TArray<FScenarioStruct> BuildDialogueTree(TArray<FDialogueNode> DialogueArray, FText Name);
 };
 

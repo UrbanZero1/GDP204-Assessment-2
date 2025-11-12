@@ -2,7 +2,7 @@
 
 
 #include "DialogueTools.h"
-TArray<FScenarioStruct> UDialogueTools::BuildDialogueTree(TArray<FDialogueNode> DialogueNodes)
+TArray<FScenarioStruct> UDialogueTools::BuildDialogueTree(TArray<FDialogueNode> DialogueNodes, FText Name)
 {
 	TArray<FScenarioStruct> OutScenarios;
 	const UEnum* EnumPtr = StaticEnum<ScenarioEnum>();
@@ -10,7 +10,11 @@ TArray<FScenarioStruct> UDialogueTools::BuildDialogueTree(TArray<FDialogueNode> 
 
 	for (int32 i = 0; i < EnumCount; i++)
 	{
-		OutScenarios.Add({ static_cast<ScenarioEnum>(i) });
+		FText EnumDisplayName = EnumPtr->GetDisplayNameTextByIndex(i);
+		if (EnumDisplayName.ToString().StartsWith(Name.ToString()))
+		{
+			OutScenarios.Add({ static_cast<ScenarioEnum>(i) });
+		}
 	}
 
 	for (int32 i = 0; i < OutScenarios.Num(); i++)
