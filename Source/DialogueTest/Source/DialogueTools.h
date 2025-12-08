@@ -187,6 +187,16 @@ public:
 	
 };
 
+USTRUCT(BlueprintType)
+struct DIALOGUETEST_API FTestStruct 
+{
+		GENERATED_BODY()
+public:
+		UPROPERTY(EditAnywhere, BlueprintReadWrite)
+		int32 A;
+		int32 B;
+};
+
 UCLASS()
 class DIALOGUETEST_API UDialogueTools : public UBlueprintFunctionLibrary
 {
